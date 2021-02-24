@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.app.vaccnow"
+    },
+    "jhipsterVersion": "6.10.5",
+    "applicationType": "monolith",
+    "baseName": "VaccnowService",
+    "packageName": "com.app.vaccnow",
+    "packageFolder": "com/app/vaccnow",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "mongodb",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MmNjZDFlZjljNDA5YmQwODE3MmQ3Mzg5ODY4NDFjOGM3NTg2MzNkYjhmMDQ2ZTgxN2NlYWNiYmMwMjE3MmE4MmViNDUyMTc3NDFlZWQ4NTE4MmEyZTI3MDQ5ZWZiMWEwNWJmYjBiZTkzNzU3NDljZDVkODFiYjg0Yjk3ODQxMzI=",
+    "embeddableLaunchScript": false,
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "clientFramework": "angularX",
+    "clientTheme": "journal",
+    "clientThemeVariant": "primary",
+    "creationTimestamp": 1613811871527,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "blueprints": []
+  }
+}

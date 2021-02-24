@@ -1,0 +1,67 @@
+<div>
+    <h2 id="page-heading">
+        <span>App Configurations</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-app-configuration" [routerLink]="['/app-configuration/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new App Configuration
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="appConfigurations?.length === 0">
+        <span>No appConfigurations found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="appConfigurations && appConfigurations.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>Key</span></th>
+                    <th scope="col" ><span>Data Type</span></th>
+                    <th scope="col" ><span>Pattern</span></th>
+                    <th scope="col" ><span>Value</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let appConfiguration of appConfigurations ;trackBy: trackId">
+                    <td><a [routerLink]="['/app-configuration', appConfiguration.id, 'view']">{{ appConfiguration.id }}</a></td>
+                    <td>{{ appConfiguration.key }}</td>
+                    <td>{{ appConfiguration.dataType }}</td>
+                    <td>{{ appConfiguration.pattern }}</td>
+                    <td>{{ appConfiguration.value }}</td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/app-configuration', appConfiguration.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/app-configuration', appConfiguration.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(appConfiguration)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

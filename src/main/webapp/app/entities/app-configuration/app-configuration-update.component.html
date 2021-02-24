@@ -1,0 +1,75 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-app-configuration-heading">Create or edit a App Configuration</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_key">Key</label>
+                    <input type="text" class="form-control" name="key" id="field_key"
+                           formControlName="key"/>
+                    <div *ngIf="editForm.get('key')!.invalid && (editForm.get('key')!.dirty || editForm.get('key')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('key')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dataType">Data Type</label>
+                    <select class="form-control" name="dataType" formControlName="dataType" id="field_dataType">
+                        <option value="STRING">STRING</option>
+                        <option value="NUMBER">NUMBER</option>
+                        <option value="REGEX">REGEX</option>
+                        <option value="DATE">DATE</option>
+                        <option value="LIST">LIST</option>
+                        <option value="DATETIME">DATETIME</option>
+                        <option value="BIGDECIMAL">BIGDECIMAL</option>
+                    </select>
+                    <div *ngIf="editForm.get('dataType')!.invalid && (editForm.get('dataType')!.dirty || editForm.get('dataType')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('dataType')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_pattern">Pattern</label>
+                    <input type="text" class="form-control" name="pattern" id="field_pattern"
+                           formControlName="pattern"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_value">Value</label>
+                    <input type="text" class="form-control" name="value" id="field_value"
+                           formControlName="value"/>
+                    <div *ngIf="editForm.get('value')!.invalid && (editForm.get('value')!.dirty || editForm.get('value')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('value')?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<div>
+    <h2 id="page-heading">
+        <span>Timeslots</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-timeslot" [routerLink]="['/timeslot/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span>
+            Create a new Timeslot
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="timeslots?.length === 0">
+        <span>No timeslots found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="timeslots && timeslots.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span>ID</span></th>
+                    <th scope="col" ><span>From</span></th>
+                    <th scope="col" ><span>To</span></th>
+                    <th scope="col" ><span>Status</span></th>
+                    <th scope="col" ><span>Payment</span></th>
+                    <th scope="col" ><span>Schedule</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let timeslot of timeslots ;trackBy: trackId">
+                    <td><a [routerLink]="['/timeslot', timeslot.id, 'view']">{{ timeslot.id }}</a></td>
+                    <td>{{ timeslot.from | date:'medium' }}</td>
+                    <td>{{ timeslot.to | date:'medium' }}</td>
+                    <td>{{ timeslot.status }}</td>
+                    <td>{{ timeslot.payment }}</td>
+                    <td>
+                        <div *ngIf="timeslot.scheduleId">
+                            <a [routerLink]="['/schedule', timeslot.scheduleId , 'view']" >{{ timeslot.scheduleDate }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/timeslot', timeslot.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/timeslot', timeslot.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(timeslot)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

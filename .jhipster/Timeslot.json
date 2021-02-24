@@ -1,0 +1,42 @@
+{
+  "fluentMethods": true,
+  "clientRootFolder": "",
+  "relationships": [
+    {
+      "relationshipName": "schedule",
+      "otherEntityName": "schedule",
+      "relationshipType": "many-to-one",
+      "otherEntityField": "date",
+      "otherEntityRelationshipName": "timeslot"
+    }
+  ],
+  "fields": [
+    {
+      "fieldName": "from",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "to",
+      "fieldType": "ZonedDateTime",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "payment",
+      "fieldType": "PaymentMethod",
+      "fieldValues": "CASH,CREDIT,FAWRY"
+    }
+  ],
+  "dto": "mapstruct",
+  "searchEngine": false,
+  "service": "serviceImpl",
+  "entityTableName": "timeslot",
+  "databaseType": "mongodb",
+  "readOnly": false,
+  "jpaMetamodelFiltering": false,
+  "pagination": "no"
+}

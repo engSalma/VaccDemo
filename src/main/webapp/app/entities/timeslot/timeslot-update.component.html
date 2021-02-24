@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-timeslot-heading">Create or edit a Timeslot</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_from">From</label>
+                    <div class="d-flex">
+                        <input id="field_from" type="datetime-local" class="form-control" name="from" formControlName="from" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('from')!.invalid && (editForm.get('from')!.dirty || editForm.get('from')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('from')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('from')?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_to">To</label>
+                    <div class="d-flex">
+                        <input id="field_to" type="datetime-local" class="form-control" name="to" formControlName="to" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('to')!.invalid && (editForm.get('to')!.dirty || editForm.get('to')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('to')?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('to')?.errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_status">Status</label>
+                    <input type="text" class="form-control" name="status" id="field_status"
+                           formControlName="status"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_payment">Payment</label>
+                    <select class="form-control" name="payment" formControlName="payment" id="field_payment">
+                        <option value="CASH">CASH</option>
+                        <option value="CREDIT">CREDIT</option>
+                        <option value="FAWRY">FAWRY</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" for="field_schedule">Schedule</label>
+                    <select class="form-control" id="field_schedule" name="schedule" formControlName="scheduleId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="scheduleOption.id" *ngFor="let scheduleOption of schedules; trackBy: trackById">{{ scheduleOption.date }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

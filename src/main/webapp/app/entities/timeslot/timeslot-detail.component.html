@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="timeslot">
+            <h2><span>Timeslot</span> {{ timeslot.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>From</span></dt>
+                <dd>
+                    <span>{{ timeslot.from }}</span>
+                </dd>
+                <dt><span>To</span></dt>
+                <dd>
+                    <span>{{ timeslot.to }}</span>
+                </dd>
+                <dt><span>Status</span></dt>
+                <dd>
+                    <span>{{ timeslot.status }}</span>
+                </dd>
+                <dt><span>Payment</span></dt>
+                <dd>
+                    <span>{{ timeslot.payment }}</span>
+                </dd>
+                <dt><span>Schedule</span></dt>
+                <dd>
+                    <div *ngIf="timeslot.scheduleId">
+                        <a [routerLink]="['/schedule', timeslot.scheduleId, 'view']">{{ timeslot.scheduleDate }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/timeslot', timeslot.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

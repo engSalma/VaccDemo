@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="appConfiguration">
+            <h2><span>App Configuration</span> {{ appConfiguration.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span>Key</span></dt>
+                <dd>
+                    <span>{{ appConfiguration.key }}</span>
+                </dd>
+                <dt><span>Data Type</span></dt>
+                <dd>
+                    <span>{{ appConfiguration.dataType }}</span>
+                </dd>
+                <dt><span>Pattern</span></dt>
+                <dd>
+                    <span>{{ appConfiguration.pattern }}</span>
+                </dd>
+                <dt><span>Value</span></dt>
+                <dd>
+                    <span>{{ appConfiguration.value }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/app-configuration', appConfiguration.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

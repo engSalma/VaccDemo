@@ -1,0 +1,16 @@
+version: '2'
+services:
+  vaccnowservice-mongodb:
+    image: mongo:4.2.7
+    ports:
+      - '27017:27017'
+    command: mongos --configdb csvr/vaccnowservice-mongodb-config --bind_ip 0.0.0.0
+  vaccnowservice-mongodb-node:
+    build:
+      context: .
+      dockerfile: mongodb/MongoDB.Dockerfile
+    command: mongod --shardsvr --replSet rs1
+  vaccnowservice-mongodb-config:
+    image: mongo:4.2.7
+    container_name: vaccnowservice-mongodb-config
+    command: mongod --configsvr --dbpath /data/db --replSet csvr
